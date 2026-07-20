@@ -1,0 +1,44 @@
+h1 {
+  color: red;
+}
+
+.addButton {
+    width: 90px;
+    height: 35px;
+    border-radius: 7px;
+}
+
+.bookList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 2 equal columns */
+  gap: 16px;
+}
+
+.book {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  padding: 16px;
+  border: 1px solid black;
+}
+
+.cardMiddle {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.removeBook {
+  width: 75px;
+}
+
+.bookTitle {
+  font-size: larger;
+  font-weight: bold;
+}
+
