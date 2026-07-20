@@ -90,20 +90,34 @@ myLibrary.forEach((bk) => {
   footer.classList.add("cardFooter");
   card.appendChild(footer);
 
+  let readItDiv = document.createElement("div");
+    readItDiv.classList.add("readItDiv");
   let readItLabel = document.createElement("label");
   readItLabel.classList.add("checkboxLabel");
   readItLabel.textContent = "read it";
+  readItLabel.for = "toggleRead";
+  readItDiv.appendChild(readItLabel);
   let readItCheckbox = document.createElement("input");
   readItCheckbox.type = "checkbox";
   readItCheckbox.name = "toggleRead";
-  readItLabel.appendChild(readItCheckbox);
-  footer.appendChild(readItLabel);
+  readItCheckbox.addEventListener("click", function (e) {
+    const bookDiv = e.target.closest(".book");
+    const bkid = bookDiv.dataset.id;
+    let book = findBook(bkid);
+    book.toggleRead();
+  });
+  readItDiv.appendChild(readItCheckbox);
+  footer.appendChild(readItDiv);
 
   let removeButton = document.createElement("button");
   removeButton.classList.add("removeBook");
   removeButton.textContent = "Remove";
-  removeButton.addEventListener("click", () => {
-    removeBook(card.dataset.id);
+  removeButton.addEventListener("click", (e) => {
+    const bookDiv = e.target.closest(".book");
+    const bookDivContainer = bookDiv.parentElement;
+    const bkid = bookDiv.dataset.id;    
+    removeBook(bkid);
+    bookDivContainer.removeChild(bookDiv);
   });
   footer.appendChild(removeButton);
 

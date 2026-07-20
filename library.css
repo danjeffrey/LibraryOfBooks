@@ -42,3 +42,8 @@ h1 {
   font-weight: bold;
 }
 
+.readItDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
