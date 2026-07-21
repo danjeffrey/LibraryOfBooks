@@ -13,12 +13,7 @@ function Book(title, author, pages, read) {
 }
 
 function findBook(bookid) {
-  myLibrary.forEach((bk) => {
-    if (bk.id === bookid) {
-      return bk;
-    }
-  });
-  return null;
+    return myLibrary.find((bk) => bk.id === bookid) || null;
 }
 
 function removeBook(bookid) {
@@ -27,7 +22,7 @@ function removeBook(bookid) {
 }
 
 Book.prototype.toggleRead = function () {
-  this.read != this.read;
+  this.read = this.read ? false : true;
 };
 
 function addBookToLibrary(title, author, pages, read) {
@@ -91,15 +86,11 @@ myLibrary.forEach((bk) => {
   card.appendChild(footer);
 
   let readItDiv = document.createElement("div");
-    readItDiv.classList.add("readItDiv");
-  let readItLabel = document.createElement("label");
-  readItLabel.classList.add("checkboxLabel");
-  readItLabel.textContent = "read it";
-  readItLabel.for = "toggleRead";
-  readItDiv.appendChild(readItLabel);
+  readItDiv.classList.add("readItDiv");
   let readItCheckbox = document.createElement("input");
   readItCheckbox.type = "checkbox";
   readItCheckbox.name = "toggleRead";
+  readItCheckbox.checked = bk.read;
   readItCheckbox.addEventListener("click", function (e) {
     const bookDiv = e.target.closest(".book");
     const bkid = bookDiv.dataset.id;
@@ -107,6 +98,11 @@ myLibrary.forEach((bk) => {
     book.toggleRead();
   });
   readItDiv.appendChild(readItCheckbox);
+  let readItLabel = document.createElement("label");
+  readItLabel.classList.add("checkboxLabel");
+  readItLabel.textContent = "read it";
+  readItLabel.for = "toggleRead";
+  readItDiv.appendChild(readItLabel);
   footer.appendChild(readItDiv);
 
   let removeButton = document.createElement("button");
@@ -115,7 +111,7 @@ myLibrary.forEach((bk) => {
   removeButton.addEventListener("click", (e) => {
     const bookDiv = e.target.closest(".book");
     const bookDivContainer = bookDiv.parentElement;
-    const bkid = bookDiv.dataset.id;    
+    const bkid = bookDiv.dataset.id;
     removeBook(bkid);
     bookDivContainer.removeChild(bookDiv);
   });
