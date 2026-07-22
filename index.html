@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="library.css">
     <script src="library.js" defer></script>
     <title>Library</title>
@@ -12,12 +16,37 @@
 <body>
     <h1>Library</h1>
     <div class="toolbar">
-        <button class="addButton">Add Book</button>
+        <button id="addBookButton" class="addButton">Add Book</button>
+    </div>
+    <div id="AddBookFormDiv" class="formContainer">
+    <br />
+    <form id="add-book-dialog" >
+        <fieldset>
+            <legend>Add a book to the library.</legend>
+            <div class="formAll">
+                <div class="formBody">
+                    <label for="title" class="formLeft">Title</label>
+                    <input type="text" id="title" name="title" class="formRight">
+                    <label for="author" class="formLeft">Author</label>
+                    <input type="text" id="author" name="author" class="formRight">
+                    <label for="pages" class="formLeft">Page count</label>
+                    <input type="number" id="pages" name="pages" class="formRight">
+                    <label for="read-it" class="formLeft">Read</label>
+                    <input type="checkbox" id="read-it" name="read-it" class="formRight">
+                </div>
+                <div class="formFooter">
+                    <button id="btnOK" commandfor="add-book-dialog" command="add">OK</button>
+                    &nbsp;
+                    <button id="btnCancel" commandfor="add-book-dialog" command="cancel">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
     </div>
     <br />
+    <div class="libraryHeadingText">Books:</div>
     <div id="bookList" class="bookList">
     </div>
 </body>
 
 </html>
-

@@ -28,6 +28,7 @@ Book.prototype.toggleRead = function () {
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
   myLibrary.push(book);
+  return book;
 }
 
 addBookToLibrary("Sometimes a Great Notion", "Ken Kesey", 321, true);
@@ -58,6 +59,10 @@ Read it
 const bookListDiv = document.getElementById("bookList");
 
 myLibrary.forEach((bk) => {
+  addOneBookToInterface(bk);
+});
+
+function addOneBookToInterface(bk) {
   let card = document.createElement("div");
   card.classList.add("book");
   card.dataset.id = bk.id;
@@ -116,6 +121,36 @@ myLibrary.forEach((bk) => {
     bookDivContainer.removeChild(bookDiv);
   });
   footer.appendChild(removeButton);
-
   bookListDiv.appendChild(card);
+};
+
+
+const addBookForm = document.getElementById("AddBookFormDiv");
+const addBookButton = document.getElementById("addBookButton");
+addBookButton.addEventListener("click", (e) => {
+  addBookForm.style.display = "inherit";
 });
+
+const cancelButton = document.getElementById("btnCancel");
+cancelButton.addEventListener("click", (e) => {
+  addBookForm.style.display = "none";
+  document.getElementById("add-book-dialog").reset();  
+});
+
+const okButton = document.getElementById("btnOK");
+okButton.addEventListener("click", (e) => {
+  processForm(e);
+  addBookForm.style.display = "none";
+});
+
+// validate form on submission
+function processForm(e) {
+  e.preventDefault();
+  const title = document.getElementById("title").value.trim();
+  const author = document.getElementById("author").value.trim();
+  const pages = document.getElementById("pages").value.trim();
+  const readit = document.getElementById("read-it").value.trim();
+  let book = addBookToLibrary(title, author, pages, readit);
+  addOneBookToInterface(book);
+  document.getElementById("add-book-dialog").reset();  
+}

@@ -1,5 +1,10 @@
+body {
+  font-family: "Roboto";
+  background-color: rgb(86, 149, 231);
+}
+
 h1 {
-  color: red;
+  color: rgb(1, 88, 201);
 }
 
 .addButton {
@@ -9,16 +14,22 @@ h1 {
 }
 
 .bookList {
+  padding: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 2 equal columns */
-  gap: 16px;
+  gap: 20px;
 }
 
 .book {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   padding: 16px;
-  border: 1px solid black;
+  border-left: 12px solid orange;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;  
+  border-radius: 7px;
+  background-color: rgb(255, 244, 182);
 }
 
 .cardMiddle {
@@ -46,4 +57,51 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.formAll {
+  padding: 10px;
+}
+
+.formBody { 
+  display: grid;
+  grid-template-columns: 85px 1fr;
+  gap: 8px; 
+}
+
+.formLeft {
+  justify-self: end;   /* aligns content to the right */
+}
+
+.formRight {
+  justify-self: start; /* aligns content to the left */
+}
+
+input[type="number"] {
+  width: 40px;
+}
+
+input[type="text"] {
+  width: 250px;
+}
+
+.formFooter {
+  justify-self: end;
+}
+
+#add-book-dialog {
+  border-radius: 7px;
+  padding: 10px;
+  width: 410px;
+  background: rgb(255, 244, 182);
+}
+
+.formContainer {
+  display: none;
+  padding: 20px;
+}
+
+.libraryHeadingText {
+  font-size: 1.5em;
+  font-weight: bold;
 }
